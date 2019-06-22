@@ -54,13 +54,14 @@ const getFlights = (request, response)=>{
 }
 
 const updateFlight = (request, response)=>{
+    console.log(request.body.Id)
     Flight.update(request.body, {
-            where: {id: request.body.id}
+            where: {Id: request.body.Id}
         })
         .then(flight => {
             if(flight){
                 console.log(flight);
-                response.json(fligth);
+                response.json(flight);
             }
         })
         .catch(err=>{
@@ -69,7 +70,7 @@ const updateFlight = (request, response)=>{
 }
 
 const deleteFlight = (request, response)=>{
-    Flight.destroy({where: {Id: request.body.id}})
+    Flight.destroy({where: {Id: request.body.Id}})
     .then(isDeleted=>{
         response.json(isDeleted)
     })

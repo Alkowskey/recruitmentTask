@@ -51,13 +51,15 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import { FlightComponent } from './flight/flight.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    TouristComponent
+    TouristComponent,
+    FlightComponent
   ],
   imports: [
     BrowserModule,

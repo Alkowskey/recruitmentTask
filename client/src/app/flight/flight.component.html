@@ -1,0 +1,52 @@
+<h1 [class.gray]="h1Style">Flight</h1>
+
+<form>
+        <mat-form-field>
+          <mat-select placeholder="Flights" [(ngModel)]="selectedValue" name="flight">
+            <mat-option [value]="{}">
+              New Flight
+            </mat-option>
+            <mat-option *ngFor="let flight of flights" [value]="flight">
+              {{flight.Id}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+</form>
+
+<mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Flight data
+        </mat-panel-title>
+        <mat-panel-description>
+          Edit flight or create a new one
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <p>
+        <mat-form-field>
+            <input matInput type="datetime-local" placeholder="Choose departure time" [(ngModel)]="selectedValue.departure_time">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+            <input matInput type="datetime-local" placeholder="Choose arrival time" [(ngModel)]="selectedValue.arrival_time">
+        </mat-form-field>
+      </p>
+
+      <mat-form-field>
+          <input matInput placeholder="number of seats" [(ngModel)]="selectedValue.number_of_seats">
+      </mat-form-field>
+
+      <p>
+        <mat-form-field>
+            <input matInput type="number" placeholder="Ticket price" [(ngModel)]="selectedValue.ticket_price"/>
+        </mat-form-field>
+      </p>
+  
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <button ng-show="selectedValue" mat-raised-button color="primary" class="btnSave" (click)="Send()">SAVE</button>
+  <button ng-show="selectedValue" mat-raised-button color="warn" class="btnSave" (click)="deleteFromDatabase()">DELETE</button>
