@@ -1,0 +1,68 @@
+<h1 [class.gray]="h1Style">Tourists</h1>
+
+<form>
+        <mat-form-field>
+          <mat-select placeholder="Tourists" [(ngModel)]="selectedValue" name="tourist">
+            <mat-option [value]="{}">
+              New tourist
+            </mat-option>
+            <mat-option *ngFor="let tourist of tourists" [value]="tourist">
+              {{tourist.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+</form>
+
+<mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Personal data
+        </mat-panel-title>
+        <mat-panel-description>
+          Type toursist personal data
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <mat-form-field>
+        <input matInput placeholder="First name" [(ngModel)]="selectedValue.name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Surname" [(ngModel)]="selectedValue.surname">
+      </mat-form-field>
+
+      <form>
+          <mat-form-field>
+            <mat-select placeholder="Sex" name="sex" [(ngModel)]="selectedValue.sex">
+              <mat-option value="female">
+                Female
+              </mat-option>
+              <mat-option value="male">
+                Male
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      </form>
+
+      <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="selectedValue.date_of_birth">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+          <input matInput placeholder="Country" [(ngModel)]="selectedValue.country">
+      </mat-form-field>
+
+      <p>
+        <mat-form-field>
+          <textarea matInput placeholder="Notes" [(ngModel)]="selectedValue.notes"></textarea>
+        </mat-form-field>
+      </p>
+  
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <button ng-show="selectedValue" mat-raised-button color="primary" class="btnSave" (click)="Send()">SAVE</button>
+  <button ng-show="selectedValue" mat-raised-button color="warn" class="btnSave" (click)="deleteFromDatabase()">DELETE</button>
