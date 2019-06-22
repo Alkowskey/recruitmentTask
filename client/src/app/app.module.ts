@@ -52,6 +52,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { FlightComponent } from './flight/flight.component';
+import { TouristFlightComponent } from './tourist-flight/tourist-flight.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { FlightComponent } from './flight/flight.component';
     AppComponent,
     NavComponent,
     TouristComponent,
-    FlightComponent
+    FlightComponent,
+    TouristFlightComponent
   ],
   imports: [
     BrowserModule,

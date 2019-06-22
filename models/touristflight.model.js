@@ -62,10 +62,26 @@ var countRegisteratedToursits = (id)=>{
     HAVING "Flight"."Id" = :fId`,
     { replacements: { fId: id }, type: sequelize.QueryTypes.SELECT })
     .then(results=>{
-        console.log(results[0]);
-        return results[0].count;
+        if(results[0]===undefined||results[0]===null)
+            return 0;
+        else
+            return results[0].count;
     })
     
+}
+
+var deleteTouristFlight = (request, response)=>{
+    console.log(request.body.FlightId, request.body.TouristId)
+    touristFlight.destroy({where: {
+        FlightId: request.body.FlightId,
+        TouristId: request.body.TouristId
+    }})
+    .then(
+        isDeleted=>{
+          response.json(isDeleted);
+        }
+    )
+
 }
 
 /*
@@ -81,7 +97,7 @@ var addTouristToFlight = (request, response)=>{
 
     //Counts
     countRegisteratedToursits(request.body.FlightId).then(results=>{
-        console.log(results);
+        console.log("mordo: ", results);
 
         //it finds Flight with less
         Flight.findOne({where:{
@@ -123,5 +139,6 @@ module.exports = {
     touristFlight,
     getTouristFlights,
     countRegisteratedToursits,
-    addTouristToFlight
+    addTouristToFlight,
+    deleteTouristFlight
 }

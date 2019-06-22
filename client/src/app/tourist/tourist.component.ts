@@ -34,7 +34,6 @@ export class TouristComponent implements OnInit {
       this.loadTourists();
     });
 
-    this.loadTourists();
   }
 
   Send(){
@@ -59,6 +58,8 @@ export class TouristComponent implements OnInit {
 
       this.loadTourists();
     })
+
+    this.setAll(this.selectedValue);
   }
 
   createNewTourist(){

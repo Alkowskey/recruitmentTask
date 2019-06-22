@@ -33,8 +33,6 @@ export class FlightComponent implements OnInit {
 
       this.loadFlights();
     });
-
-    this.loadFlights();
   }
 
   Send(){
@@ -59,6 +57,8 @@ export class FlightComponent implements OnInit {
 
       this.loadFlights();
     })
+
+    this.setAll(this.selectedValue);
   }
 
   createNewFlight(){

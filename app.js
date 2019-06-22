@@ -58,6 +58,9 @@ app.get('/api/joined/countTourists', (request, response)=>{
 app.post('/api/joined/addTourist', (request, response)=>{
     touristFlight.addTouristToFlight(request, response);
 })
+app.post('/api/joined/deleteTouristFlight', (request, response)=>{
+    touristFlight.deleteTouristFlight(request, response);
+})
 app.listen(port, () => {
     console.log('Server is up and running on port number: ', port);
 });
