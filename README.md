@@ -3,7 +3,7 @@
 prerequisites: 
 - node js
 - postgres database (provide database name, username, password and host in 'config/config.json')
-- angular installed globally
+- angular installed globally (npm install -g angular-cli)
 
 
 how to start: 
