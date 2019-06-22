@@ -50,7 +50,7 @@ const createTourist = (request, response)=>{
   Tourist.create(tourist);
 
   console.log(tourist);
-  response.json(tourist);
+  response.send("Created successfully!");
 }
 
 const getTourists = (request, response)=>{
@@ -66,10 +66,11 @@ const updateTourist = (request, response)=>{
   .then(tourist=>{
     if(tourist){
       console.log(tourist);
-      response.json(tourist);
+      response.send("Saved!");
     }
   })
   .catch(err=>{
+    response.send("Something went wrong!");
     console.log(err);
   });
 }
@@ -78,7 +79,10 @@ const deleteTourist = (request, response)=>{
   Tourist.destroy({where: {Id: request.body.Id}})
   .then(
     isDeleted=>{
-      response.json(isDeleted);
+      if(isDeleted)
+        response.send('Deleted successfully');
+      else
+        response.send('I wasn\'t able to delete');
     }
   )
 }

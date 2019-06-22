@@ -14,16 +14,16 @@ export class FlightsService {
 
   updateFlight(flight){
     console.log(JSON.stringify(flight));
-    return this.http.post('http://127.0.0.1:8080/api/Flights/updateFlight', flight);
+    return this.http.post('http://127.0.0.1:8080/api/Flights/updateFlight', flight, {responseType: 'text'});
   }
 
   createFlight(flight){
     console.log(JSON.stringify(flight));
-    return this.http.post('http://127.0.0.1:8080/api/Flights/createFlight', flight);
+    return this.http.post('http://127.0.0.1:8080/api/Flights/createFlight', flight, {responseType: 'text'});
   }
 
   deleteFlight(flight){
     console.log(JSON.stringify(flight));
-    return this.http.post('http://127.0.0.1:8080/api/Flights/deleteFlight', flight);
+    return this.http.post('http://127.0.0.1:8080/api/Flights/deleteFlight', flight, {responseType: 'text'});
   }
 }

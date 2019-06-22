@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TouristsService} from '../tourists.service';
+import {SnackbarsService} from '../snackbars.service';
 
 @Component({
   selector: 'app-tourist',
@@ -11,7 +12,7 @@ export class TouristComponent implements OnInit {
   tourists: Object;
   selectedValue: any = {};
 
-  constructor(private Tourists: TouristsService) { }
+  constructor(private Tourists: TouristsService, private _snackbar: SnackbarsService) { }
 
   ngOnInit() {
       this.loadTourists();
@@ -28,9 +29,11 @@ export class TouristComponent implements OnInit {
 
     console.log("Update");
 
-    this.Tourists.updateTourist(this.selectedValue).subscribe(data=>{
+    this.Tourists.updateTourist(this.selectedValue).subscribe((data: string)=>{
       console.log(data);
 
+      this._snackbar.openSnackBar(data, "close");
+      
       this.loadTourists();
     });
 
@@ -51,10 +54,9 @@ export class TouristComponent implements OnInit {
   }
 
   deleteFromDatabase(){
-    console.log("Delete");
 
     this.Tourists.deleteTourist(this.selectedValue).subscribe(data=>{
-      console.log(data);
+      this._snackbar.openSnackBar(data, "close");
 
       this.loadTourists();
     })
@@ -63,10 +65,10 @@ export class TouristComponent implements OnInit {
   }
 
   createNewTourist(){
-    console.log("Create");
 
     this.Tourists.createTourist(this.selectedValue).subscribe(data=>{
-      console.log(data);
+
+      this._snackbar.openSnackBar(data, "close");
 
       this.loadTourists();
     });

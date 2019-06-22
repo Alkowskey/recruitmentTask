@@ -78,8 +78,11 @@ var deleteTouristFlight = (request, response)=>{
     }})
     .then(
         isDeleted=>{
-          response.json(isDeleted);
-        }
+            if(isDeleted)
+              response.send('Deleted successfully');
+            else
+              response.send('I wasn\'t able to delete');
+          }
     )
 
 }
@@ -97,7 +100,6 @@ var addTouristToFlight = (request, response)=>{
 
     //Counts
     countRegisteratedToursits(request.body.FlightId).then(results=>{
-        console.log("mordo: ", results);
 
         //it finds Flight with less
         Flight.findOne({where:{
@@ -108,7 +110,7 @@ var addTouristToFlight = (request, response)=>{
         }}).then(flight=>{
             console.log(flight);
             if(flight===null||flight===undefined){
-                response.send('full');
+                response.send('Flight is currently full');
                 console.log("Full");
                 return; 
             }
@@ -123,11 +125,11 @@ var addTouristToFlight = (request, response)=>{
             }}).then(result=>{
                 let created = result[1];
                 if(!created){
-                    response.send(false);
+                    response.send('You are already registerated to this flight or it is full!');
                     console.log("You are already registerated to this flight or it is full!");
                 }
                 else{
-                    response.send(true);
+                    response.send('Tourist joined flight!');
                     console.log("created!");
                 }
             })

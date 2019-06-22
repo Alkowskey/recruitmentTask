@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FlightsService} from '../flights.service';
+import {SnackbarsService} from '../snackbars.service';
 
 @Component({
   selector: 'app-flight',
@@ -11,7 +12,7 @@ export class FlightComponent implements OnInit {
   flights: Object;
   selectedValue: any = {};
 
-  constructor(private Flights: FlightsService) { }
+  constructor(private Flights: FlightsService, private _snackbar: SnackbarsService) { }
 
   ngOnInit() {
       this.loadFlights();
@@ -30,6 +31,7 @@ export class FlightComponent implements OnInit {
 
     this.Flights.updateFlight(this.selectedValue).subscribe(data=>{
       console.log(data);
+      this._snackbar.openSnackBar(data, "close");
 
       this.loadFlights();
     });
@@ -55,6 +57,8 @@ export class FlightComponent implements OnInit {
     this.Flights.deleteFlight(this.selectedValue).subscribe(data=>{
       console.log(data);
 
+      this._snackbar.openSnackBar(data, "close");
+
       this.loadFlights();
     })
 
@@ -66,6 +70,8 @@ export class FlightComponent implements OnInit {
 
     this.Flights.createFlight(this.selectedValue).subscribe(data=>{
       console.log(data);
+
+      this._snackbar.openSnackBar(data, "close");
 
       this.loadFlights();
     });

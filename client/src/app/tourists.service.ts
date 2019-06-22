@@ -13,17 +13,14 @@ export class TouristsService {
   }
 
   updateTourist(tourist){
-    console.log(JSON.stringify(tourist));
-    return this.http.post('http://127.0.0.1:8080/api/Tourists/updateTourist', tourist);
+    return this.http.post('http://127.0.0.1:8080/api/Tourists/updateTourist', tourist, {responseType: 'text'});
   }
 
   createTourist(tourist){
-    console.log(JSON.stringify(tourist));
-    return this.http.post('http://127.0.0.1:8080/api/Tourists/createTourist', tourist);
+    return this.http.post('http://127.0.0.1:8080/api/Tourists/createTourist', tourist, {responseType: 'text'});
   }
 
   deleteTourist(tourist){
-    console.log(JSON.stringify(tourist));
-    return this.http.post('http://127.0.0.1:8080/api/Tourists/deleteTourist', tourist);
+    return this.http.post('http://127.0.0.1:8080/api/Tourists/deleteTourist', tourist, {responseType: 'text'});
   }
 }

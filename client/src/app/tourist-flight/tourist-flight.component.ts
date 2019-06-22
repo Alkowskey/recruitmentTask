@@ -3,6 +3,7 @@ import {TouristsService} from '../tourists.service';
 import { FlightsService } from '../flights.service';
 import { TouristsFlightsService } from '../tourists-flights.service';
 import { MatSort, MatTableDataSource } from '@angular/material';
+import {SnackbarsService} from '../snackbars.service';
 
 export interface Tourist_Flight {
   Id: number;
@@ -41,7 +42,7 @@ export class TouristFlightComponent implements OnInit {
   selectedTourist: any = {};
   selectedFlight: any = {};
 
-  constructor(private Tourists: TouristsService, private Flights: FlightsService, private touristsFlights: TouristsFlightsService) { }
+  constructor(private Tourists: TouristsService, private Flights: FlightsService, private touristsFlights: TouristsFlightsService, private _snackbar: SnackbarsService) { }
 
   ngOnInit() {
       this.loadTourists();
@@ -63,6 +64,9 @@ export class TouristFlightComponent implements OnInit {
     console.log(_touristFlight);
     this.touristsFlights.deleteTouristFromFlight(_touristFlight).subscribe(data=>{
       console.log(data);
+
+      this._snackbar.openSnackBar(data, "close");
+
       this.loadTouristsInFlights();
     });
   }
@@ -85,6 +89,9 @@ export class TouristFlightComponent implements OnInit {
   addTourist(){
     this.touristsFlights.addTouristToFlight(this.selectedTourist, this.selectedFlight).subscribe(data=>{
       console.log(data);
+      
+      this._snackbar.openSnackBar(data, "close");
+
       this.loadTouristsInFlights();
     });
   }

@@ -43,7 +43,7 @@ const createFlight = (request, response)=>{
     Flight.create(flight);
   
     console.log(flight);
-    response.json(flight);
+    response.send('Created successfully!');
   }
 
 const getFlights = (request, response)=>{
@@ -61,19 +61,24 @@ const updateFlight = (request, response)=>{
         .then(flight => {
             if(flight){
                 console.log(flight);
-                response.json(flight);
+                response.send('Updated Successfully!');
             }
         })
         .catch(err=>{
+            response.send('Something went wrong!');
             console.error(err);
         })
 }
 
 const deleteFlight = (request, response)=>{
     Flight.destroy({where: {Id: request.body.Id}})
-    .then(isDeleted=>{
-        response.json(isDeleted)
-    })
+    .then(        
+        isDeleted=>{
+        if(isDeleted)
+          response.send('Deleted successfully');
+        else
+          response.send('I wasn\'t able to delete');
+      })
     .catch(err=>{
         console.error(err);
     })
