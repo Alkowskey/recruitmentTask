@@ -1,6 +1,6 @@
 {
-    "username": "postgres",
-    "password": "postgres",
+    "username": "username",
+    "password": "pass",
     "database": "recruitmentTask",
     "host": "localhost"
 }
